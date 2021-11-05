@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { ListContext } from '../context/List';
 import Card from './Card';
 import {
@@ -18,13 +18,13 @@ const Menu = () => {
             <PageHeader>메뉴 담기</PageHeader>
           </HeaderSection>
           <BodySection>
-            <ScrollView contentContainerStyle={styles.contentContainer}>
+            {/* <ScrollView>
               {purchaseList.map((content) => (
                 <View key={content.id} value={content}>
                   <Card props={content} />
                 </View>
               ))}
-            </ScrollView>
+            </ScrollView> */}
           </BodySection>
         </BackgroundWrapper>
       )}
@@ -32,10 +32,4 @@ const Menu = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  contentContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-});
 export default Menu;
