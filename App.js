@@ -11,7 +11,7 @@ const App = () => {
     Light: require('./assets/fonts/SCDream3.otf'),
     Regular: require('./assets/fonts/SCDream4.otf'),
     Medium: require('./assets/fonts/SCDream5.otf'),
-    Bold6: require('./assets/fonts/SCDream6.otf'),
+    Bold: require('./assets/fonts/SCDream6.otf'),
     ExtraBold: require('./assets/fonts/SCDream7.otf'),
     Heavy: require('./assets/fonts/SCDream8.otf'),
   });

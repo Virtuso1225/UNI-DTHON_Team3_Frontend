@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text } from 'react-native';
 import { ListContext } from '../context/List';
 import PlusIcon from 'react-native-vector-icons/AntDesign';
@@ -12,9 +12,7 @@ import {
   AddButton,
 } from './CardStyle';
 
-const Card = ({ props }) => {
-  const menuTitle = props.title;
-  const subTitle = props.subTitle;
+const Card = ({ title, subTitle }) => {
   return (
     <CardWrapper>
       <AddButton>
@@ -23,7 +21,7 @@ const Card = ({ props }) => {
       <ImageSection>{/* <Image></Image> */}</ImageSection>
       <TitleSection>
         <SubTitle>{subTitle}</SubTitle>
-        <Title>{menuTitle}</Title>
+        <Title>{title}</Title>
       </TitleSection>
     </CardWrapper>
   );
