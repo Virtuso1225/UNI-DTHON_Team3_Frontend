@@ -19,10 +19,7 @@ export const HeaderSection = styled.View`
 `;
 
 export const BodySection = styled.View`
-  width: ${responsiveScreenWidth(88.2)}px;
   margin-top: ${responsiveScreenHeight(2.04)}px;
-  padding-top: 20px;
-  border: 1px solid black;
 `;
 
 export const PageHeader = styled.Text`

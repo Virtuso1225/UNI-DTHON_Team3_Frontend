@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    paddingTop: 10,
   },
 });
 export default Menu;

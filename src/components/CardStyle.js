@@ -41,15 +41,18 @@ export const SubTitle = styled.Text`
   font-size: ${responsiveScreenFontSize(1.18)}px;
   font-family: Regular;
   color: #877160;
+  margin-bottom: 2px;
 `;
 
 export const AddButton = styled.Pressable`
-  width: ${responsiveScreenWidth(8.54)}px;
-  height: ${responsiveScreenWidth(8.54)}px;
-  border-radius: ${responsiveScreenWidth(4.26)}px;
+  width: ${responsiveScreenHeight(4.5)}px;
+  height: ${responsiveScreenHeight(4.5)}px;
+  border-radius: ${responsiveScreenHeight(2.25)}px;
   background-color: #f2c47f;
   position: absolute;
-  right: -5px;
-  top: -5px;
+  right: -10px;
+  top: -7px;
   z-index: 1;
+  justify-content: center;
+  align-items: center;
 `;
