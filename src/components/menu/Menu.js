@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
+import axios from 'axios';
 import { Animated, ScrollView, View, StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { BasketWhiteSvg } from '../../../assets/svg/Svg';
@@ -17,11 +18,37 @@ import {
   CountContainer,
 } from './MenuStyle';
 import ModalComponent from '../modal/ModalComponent';
+import url from '../../Global';
 import { responsiveScreenWidth } from 'react-native-responsive-dimensions';
 import { CustomText } from '../CustomText';
 
-const Menu = () => {
+const Menu = ({ navigation }) => {
   const [click, setClick] = useState(false);
+      
+  // const axios = require('axios');
+  // const url = url;
+
+  // const getList = async () => {
+  //   try {
+  //     return await axios.get(`${url}/food/getallfood`);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // const ListFatch = async () => {
+  //   const list = await getList();
+
+  //   if (list.data.message) {
+  //     console.log(`${Object.entries(list.data.message).length}입니다.`);
+  //   }
+  // };
+
+  // useEffect(()=>{
+
+  //   ListFatch();
+
+  // },[]);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const { purchaseList, setPurchaseList, totalNum, menuList, setTotalNum } =
     useContext(ListContext);
@@ -67,7 +94,7 @@ const Menu = () => {
           ))}
         </ScrollView>
       </BodySection>
-      <SubmitButton>
+      <SubmitButton onPress={() => navigation.navigate('TotalNuturient')}>
         <Icon name="chevron-right" size={35} color="#877160" />
       </SubmitButton>
       <Animated.View
