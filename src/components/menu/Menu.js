@@ -37,21 +37,13 @@ const Menu = ({ navigation }) => {
   const { menuList, setMenuList } = useContext(ListContext);
 
   const ListFatch = async () => {
-    const list = await getList()
-      .then((response) => {
-        if (response.data.message) {
-          setMenuList(list);
-        }
-      })
-      .catch((err) => {
-        console.log(error);
-      });
+    const list = await getList();
+    setMenuList(list.data.body);
   };
 
   useEffect(() => {
     ListFatch();
   }, []);
-
 
   return (
     <BackgroundWrapper>
