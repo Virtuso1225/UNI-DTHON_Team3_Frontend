@@ -3,98 +3,49 @@ import { responsiveScreenFontSize } from 'react-native-responsive-dimensions';
 import { CustomText } from '../CustomText';
 import { IngredientRowView, RowView } from './IngredientStyle';
 
-const Ingredient = () => {
+const Ingredient = ({ mainIngre }) => {
+  const ingredients = Object.keys(mainIngre);
   return (
     <RowView>
-      <IngredientRowView>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Bold"
-          color="#000000"
-        >
-          대파
-        </CustomText>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Regular"
-          color="#000000"
-        >
-          1/2대
-        </CustomText>
-      </IngredientRowView>
-      <IngredientRowView>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Bold"
-          color="#000000"
-        >
-          김치{' '}
-        </CustomText>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Regular"
-          color="#000000"
-        >
-          1컵
-        </CustomText>
-      </IngredientRowView>
-      <IngredientRowView>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Bold"
-          color="#000000"
-        >
-          김치{' '}
-        </CustomText>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Regular"
-          color="#000000"
-        >
-          1컵
-        </CustomText>
-      </IngredientRowView>
-      <IngredientRowView>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Bold"
-          color="#000000"
-        >
-          김치{' '}
-        </CustomText>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Regular"
-          color="#000000"
-        >
-          1컵
-        </CustomText>
-      </IngredientRowView>
+      {ingredients.map((item) => (
+        <IngredientRowView key={item.key}>
+          <CustomText
+            size={responsiveScreenFontSize(1.97)}
+            font="Bold"
+            color="#000000"
+          >
+            {item}
+            {'  '}
+          </CustomText>
+          <CustomText
+            size={responsiveScreenFontSize(1.97)}
+            font="Regular"
+            color="#000000"
+          >
+            {mainIngre[item]}
+          </CustomText>
+        </IngredientRowView>
+      ))}
     </RowView>
   );
 };
 
-const SubIngredient = () => {
+const SubIngredient = ({ subIngre }) => {
+  const ingredients = Object.keys(subIngre);
   return (
     <RowView>
-      <IngredientRowView>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Bold"
-          color="#000000"
-        >
-          식용유
-        </CustomText>
-      </IngredientRowView>
-      <IngredientRowView>
-        <CustomText
-          size={responsiveScreenFontSize(1.97)}
-          font="Bold"
-          color="#000000"
-        >
-          설탕
-        </CustomText>
-      </IngredientRowView>
+      {ingredients.map((item) => (
+        <IngredientRowView key={item.key}>
+          <CustomText
+            size={responsiveScreenFontSize(1.97)}
+            font="Bold"
+            color="#000000"
+          >
+            {item}
+            {'  '}
+          </CustomText>
+        </IngredientRowView>
+      ))}
     </RowView>
   );
 };

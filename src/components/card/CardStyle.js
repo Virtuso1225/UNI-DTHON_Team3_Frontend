@@ -4,6 +4,7 @@ import {
   responsiveScreenHeight,
   responsiveScreenFontSize,
 } from 'react-native-responsive-dimensions';
+export const Wrapper = styled.Pressable``;
 
 export const CardWrapper = styled.View`
   width: ${responsiveScreenWidth(38.71)}px;

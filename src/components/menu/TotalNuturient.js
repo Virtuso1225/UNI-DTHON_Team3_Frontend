@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
+import axios from 'axios';
 import Icon from 'react-native-vector-icons/Feather';
 import { ListContext } from '../../context/List';
 import {
@@ -12,8 +13,11 @@ import {
 import NuturientTypeInfo from '../nuturient/NuturientTypeInfo';
 import NuturientWarning from '../nuturient/NuturientWarning';
 import Toggle from '../toggleButton/Toggle';
+import url from '../../Global';
 
 const TotalNuturient = ({ navigation }) => {
+  const dataurl = url();
+
   const [calory, setCalory] = useState([
     { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
     { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
@@ -39,6 +43,22 @@ const TotalNuturient = ({ navigation }) => {
   const [totalDan, setTotalDan] = useState(444);
   const [totalJi, setTotalJi] = useState(444);
   const [totalNa, setTotalNa] = useState(444);
+
+  const { setTotalNum, totalNum, setPurchaseList, purchaseList } =
+    useContext(ListContext);
+
+  // const getList = async () => {
+  //   try {
+  //     return await axios.get(`${dataurl}/food/getfoodnut/?name=`);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // const ListFatch = async () => {
+  //   const list = await getList();
+  // };
+
   const [warninglist, setWarninglist] = useState([
     '열량이 높은 음식이예요',
     '나트륨 함량이 높은 음식이예요',

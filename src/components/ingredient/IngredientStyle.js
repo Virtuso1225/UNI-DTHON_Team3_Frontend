@@ -13,4 +13,6 @@ export const RowView = styled.View`
 export const IngredientRowView = styled.View`
   width: ${responsiveScreenWidth(28.46)}px;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
 `;
