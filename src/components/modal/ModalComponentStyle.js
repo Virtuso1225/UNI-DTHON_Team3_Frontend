@@ -14,7 +14,7 @@ export const CenterView = styled.View`
 
 export const ModalWrapper = styled.View`
   width: ${responsiveScreenWidth(84.35)}px;
-  height: ${responsiveScreenHeight(63.62)}px;
+  height: ${responsiveScreenHeight(73.62)}px;
   border-radius: 11px;
   background-color: #fefcf9;
   align-items: center;
@@ -57,6 +57,8 @@ export const Button = styled.Pressable`
   align-items: center;
   margin-top: 9px;
   box-shadow: 8px 8px 20px rgba(222, 215, 202, 0.57);
+  position: absolute;
+  bottom: 20px;
 `;
 
 export const RowWrapper = styled.Pressable`

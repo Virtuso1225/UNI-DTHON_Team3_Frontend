@@ -19,7 +19,6 @@ export const ImageSection = styled.View`
   width: 100%;
   border-top-left-radius: 13px;
   border-top-right-radius: 13px;
-  background-color: black;
 `;
 
 export const TitleSection = styled.View`

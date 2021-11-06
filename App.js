@@ -19,6 +19,7 @@ const App = () => {
   if (!fontsLoaded) {
     return <Apploading />;
   }
+
   return (
     <ListProvider>
       <NavigationContainer>

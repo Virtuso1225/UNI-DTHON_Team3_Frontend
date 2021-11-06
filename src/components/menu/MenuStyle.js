@@ -49,7 +49,7 @@ export const SubmitButton = styled.Pressable`
   height: ${responsiveScreenWidth(15)}px;
   border-radius: ${responsiveScreenWidth(7.5)}px;
   background-color: #ffffff;
-  z-index: 1;
+  z-index: 2;
   position: absolute;
   right: 10px;
   bottom: 80px;
@@ -112,4 +112,53 @@ export const FoodWrapper = styled.View`
   height: auto;
   padding: 16px 25px;
   margin-top: 8px;
+
+export const MenuBottomList = styled.View`
+  width: ${responsiveScreenWidth(86.6)}px;
+  height: ${responsiveScreenWidth(15)}px;
+  background-color: rgba(255, 255, 255, 0.91);
+  z-index: 1;
+  display: ${(props) => (props.isVisible ? 'flex' : 'none')};
+  position: absolute;
+  bottom: 15px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  border-top-left-radius: 11px;
+  border-bottom-left-radius: 11px;
+`;
+
+export const MiniMenu = styled.View`
+  width: ${responsiveScreenWidth(25)}px;
+  height: ${responsiveScreenHeight(4.73)}px;
+  background-color: #eeeeee;
+  justify-content: center;
+  border-radius: 11px;
+  margin-left: 10px;
+  padding-left: 10px;
+  display: ${(props) => (props.isVisible > 0 ? 'flex' : 'none')};
+`;
+
+export const Revoke = styled.Pressable`
+  width: ${responsiveScreenWidth(4.2)}px;
+  height: ${responsiveScreenWidth(4.2)}px;
+  border-radius: ${responsiveScreenWidth(2.1)}px;
+  z-index: 2;
+  position: absolute;
+  left: -4px;
+  top: -6px;
+  background-color: #a5a5a5;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CountContainer = styled.Pressable`
+  width: ${responsiveScreenWidth(4.2)}px;
+  height: ${responsiveScreenWidth(4.2)}px;
+  border-radius: ${responsiveScreenWidth(2.1)}px;
+  z-index: 2;
+  position: absolute;
+  right: -3px;
+  bottom: -6px;
+  background-color: #f2c47f;
+  justify-content: center;
+  align-items: center;
 `;
