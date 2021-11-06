@@ -25,29 +25,33 @@ import toggle from '../toggleButton/Toggle';
 import Toggle from '../toggleButton/Toggle';
 
 const Menu = ({ navigation }) => {
-  const axios = require('axios');
-  const url = url;
-
+  const dataurl = url();
   const getList = async () => {
     try {
-      return await axios.get(
-        'http://4eb1-210-108-88-230.ngrok.io/food/getallfood'
-      );
+      return await axios.get(`${dataurl}/food/getallfood`);
     } catch (error) {
       console.error(error);
     }
   };
+
   const { menuList, setMenuList } = useContext(ListContext);
+
   const ListFatch = async () => {
-    const list = await getList();
-    setMenuList(list.data.body);
+    const list = await getList()
+      .then((response) => {
+        if (response.data.message) {
+          setMenuList(list);
+        }
+      })
+      .catch((err) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
     ListFatch();
-    console.log('dddddd');
-    menuList.map((c) => console.log(c.name));
   }, []);
+
 
   return (
     <BackgroundWrapper>

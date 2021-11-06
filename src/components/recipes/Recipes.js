@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, Linking } from 'react-native';
 import { ListContext } from '../../context/List';
 import RecipeCard from '../card/RecipeCard';
 import {
@@ -24,6 +24,7 @@ const Recipes = () => {
                   key={content.id}
                   title={content.title}
                   subTitle={content.subTitle}
+                  onPress={() => Linking.openURL('http://naver.com/')}
                 />
               ))}
             </ScrollView>
