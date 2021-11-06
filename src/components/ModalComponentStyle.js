@@ -25,27 +25,40 @@ export const TitleSection = styled.View`
   width: ${responsiveScreenWidth(71.58)}px;
 `;
 
-export const Title = styled.Text`
-  font-family: Bold;
-  font-size: ${responsiveScreenFontSize(3.95)}px;
-  color: #000000;
-`;
-
 export const NutrientsSection = styled.View`
   width: ${responsiveScreenWidth(71.58)}px;
-  height: ${responsiveScreenHeight(13.5)}px;
+  height: ${responsiveScreenHeight(14.5)}px;
   background-color: rgba(242, 196, 127, 0.27);
   border-radius: 13px;
   margin-top: ${responsiveScreenHeight(2.72)}px;
-  padding: ${responsiveScreenWidth(5.12)}px;
+  align-items: center;
 `;
 
-export const NutrientText = styled.Text`
-  font-size: ${responsiveScreenFontSize(1.84)}px;
-  font-family: Regular;
-  color: black;
+export const NutrientSWrapper = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom-width: 1px;
+  border-bottom-color: black;
+  width: ${responsiveScreenWidth(63.58)}px;
+  height: ${responsiveScreenHeight(7)}px;
+  margin-top: ${responsiveScreenHeight(2.36)}px;
+  justify-content: space-between;
+  padding-left: 2px;
+  padding-right: 10px;
+  margin-bottom: ${responsiveScreenHeight(1.42)}px;
 `;
 
+export const ColumnWrapper = styled.View``;
+
+export const Nutrient = styled.View`
+  flex-direction: row;
+  margin-bottom: 4px;
+`;
+
+export const Calorie = styled.View`
+  width: ${responsiveScreenWidth(63.58)}px;
+  flex-direction: row-reverse;
+`;
 export const AlertInfo = styled.View`
   width: ${responsiveScreenWidth(71.58)}px;
   height: ${responsiveScreenHeight(4.5)}px;
@@ -53,6 +66,9 @@ export const AlertInfo = styled.View`
   border-radius: 11px;
   margin-top: ${responsiveScreenHeight(1.3)}px;
   display: ${(props) => (props.isVisible ? 'flex' : 'none')};
+  align-items: center;
+  padding-left: ${responsiveScreenWidth(5.12)}px;
+  flex-direction: row;
 `;
 
 export const IngredientSection = styled.View`

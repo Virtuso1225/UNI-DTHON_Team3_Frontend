@@ -3,6 +3,7 @@ import { useFonts } from 'expo-font';
 import Apploading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native';
 import Mainpage from './src/pages/Mainpage';
+import { ListContext, ListProvider } from './src/context/List';
 
 const App = () => {
   const [fontsLoaded] = useFonts({
@@ -15,14 +16,15 @@ const App = () => {
     ExtraBold: require('./assets/fonts/SCDream7.otf'),
     Heavy: require('./assets/fonts/SCDream8.otf'),
   });
-
   if (!fontsLoaded) {
     return <Apploading />;
   }
   return (
-    <NavigationContainer>
-      <Mainpage />
-    </NavigationContainer>
+    <ListProvider>
+      <NavigationContainer>
+        <Mainpage />
+      </NavigationContainer>
+    </ListProvider>
   );
 };
 

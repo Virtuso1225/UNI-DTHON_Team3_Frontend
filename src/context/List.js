@@ -25,7 +25,7 @@ const ListProvider = ({ children }) => {
     totalNum,
     setTotalNum,
   };
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+  return <ListContext.Provider value={value}>{children}</ListContext.Provider>;
 };
 
 export { ListContext, ListProvider };
