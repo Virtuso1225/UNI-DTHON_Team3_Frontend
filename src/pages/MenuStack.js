@@ -8,7 +8,7 @@ const MenuStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Mypage"
+        name="Menu"
         component={Menu}
         options={{
           headerShown: false,

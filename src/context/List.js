@@ -1,7 +1,7 @@
 import React, { useState, createContext } from 'react';
 
 const ListContext = createContext({
-  purchaseList: [
+  menuList: [
     { id: 0, title: '김치볶음밥', subTitle: '매콤달콤' },
     { id: 1, title: '소세지야채볶음', subTitle: '추억의 그 맛' },
     { id: 2, title: '김치볶음밥', subTitle: '매콤달콤' },
@@ -11,13 +11,14 @@ const ListContext = createContext({
     { id: 6, title: '김치볶음밥', subTitle: '매콤달콤' },
     { id: 7, title: '소세지야채볶음', subTitle: '추억의 그 맛' },
   ],
-  totalNum: 8,
+  purchaseList: [],
+  totalNum: 0,
   setPurchaseList: () => {},
   setTotalNum: () => {},
 });
 
 const ListProvider = ({ children }) => {
-  const [purchaseList, setPurchaseList] = useState([
+  const [menuList, setMenuList] = useState([
     { id: 0, title: '김치볶음밥', subTitle: '매콤달콤' },
     { id: 1, title: '소세지야채볶음', subTitle: '추억의 그 맛' },
     { id: 2, title: '김치볶음밥', subTitle: '매콤달콤' },
@@ -27,8 +28,11 @@ const ListProvider = ({ children }) => {
     { id: 6, title: '김치볶음밥', subTitle: '매콤달콤' },
     { id: 7, title: '소세지야채볶음', subTitle: '추억의 그 맛' },
   ]);
-  const [totalNum, setTotalNum] = useState(8);
+  const [purchaseList, setPurchaseList] = useState();
+  const [totalNum, setTotalNum] = useState(0);
   const value = {
+    menuList,
+    setMenuList,
     purchaseList,
     setPurchaseList,
     totalNum,

@@ -18,12 +18,28 @@ import {
 import { CustomText } from '../CustomText';
 import { ListContext } from '../../context/List';
 import NuturientInfo from '../nuturient/NuturientInfo';
+import { Ingredient, SubIngredient } from '../ingredient/Ingredient';
 
 const ModalComponent = ({ props }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const { purchaseList, setPurchaseList, setTotalNum, totalNum } =
+    useContext(ListContext);
+  const subTitle = props.subTitle;
   const menuTitle = props.title;
-  const { subTitle } = props;
-  const { setTotalNum, totalNum } = useContext(ListContext);
+
+  const purchaseListInsert = () => {
+    const index = purchaseList.findIndex((content) => content.id === props.id);
+    const content = {
+      ...purchaseList[index],
+      count: purchaseList[index].count + 1,
+    };
+
+    setPurchaseList([
+      ...purchaseList.slice(0, index),
+      content,
+      ...purchaseList.slice(index + 1),
+    ]);
+  };
   return (
     <>
       <View>
@@ -74,12 +90,33 @@ const ModalComponent = ({ props }) => {
                 >
                   재료
                 </CustomText>
+                <Ingredient />
+              </IngredientSection>
+              <IngredientSection>
+                <CustomText
+                  size={responsiveScreenFontSize(2.37)}
+                  font="ExtraBold"
+                  color="#000000"
+                >
+                  부재료
+                </CustomText>
+                <SubIngredient />
               </IngredientSection>
               <Button
                 color="#877160"
                 onPress={() => {
                   setModalVisible(!modalVisible);
                   setTotalNum(totalNum + 1);
+                  purchaseList
+                    ? purchaseList.findIndex(
+                        (content) => content.id === props.id
+                      ) !== -1
+                      ? purchaseListInsert()
+                      : setPurchaseList([
+                          ...purchaseList,
+                          { ...props, count: 1 },
+                        ])
+                    : setPurchaseList([{ ...props, count: 1 }]);
                 }}
               >
                 <ButtonText>장바구니 추가하기</ButtonText>
@@ -93,7 +130,7 @@ const ModalComponent = ({ props }) => {
           setModalVisible(true);
         }}
       >
-        <Card title={menuTitle} subTitle={subTitle} />
+        <Card props={props} />
       </Pressable>
     </>
   );
