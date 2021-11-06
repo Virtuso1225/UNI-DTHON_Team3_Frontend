@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { BasketWhiteSvg } from '../../../assets/svg/Svg';
@@ -14,9 +15,36 @@ import {
   SubmitButton,
 } from './MenuStyle';
 import ModalComponent from '../modal/ModalComponent';
+import url from '../../Global';
 
-const Menu = () => {
+const Menu = ({ navigation }) => {
   const [click, setClick] = useState(false);
+
+  // const axios = require('axios');
+  // const url = url;
+
+  // const getList = async () => {
+  //   try {
+  //     return await axios.get(`${url}/food/getallfood`);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // const ListFatch = async () => {
+  //   const list = await getList();
+
+  //   if (list.data.message) {
+  //     console.log(`${Object.entries(list.data.message).length}입니다.`);
+  //   }
+  // };
+
+  // useEffect(()=>{
+
+  //   ListFatch();
+
+  // },[]);
+
   return (
     <ListContext.Consumer>
       {({ purchaseList, totalNum }) => (
@@ -33,7 +61,7 @@ const Menu = () => {
               ))}
             </ScrollView>
           </BodySection>
-          <SubmitButton>
+          <SubmitButton onPress={() => navigation.navigate('TotalNuturient')}>
             <Icon name="chevron-right" size={35} color="#877160" />
           </SubmitButton>
           <BasketButton

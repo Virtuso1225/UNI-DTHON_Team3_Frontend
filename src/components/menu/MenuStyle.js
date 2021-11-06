@@ -19,6 +19,7 @@ export const HeaderSection = styled.View`
 `;
 
 export const BodySection = styled.View`
+  flex: 1;
   margin-top: ${responsiveScreenHeight(0.8)}px;
 `;
 
@@ -76,4 +77,39 @@ export const ListNum = styled.Text`
   font-family: Regular;
   font-size: 8px;
   color: white;
+`;
+
+export const SaveBtn = styled.Pressable`
+  width: ${responsiveScreenWidth(88.2)}px;
+  height: ${responsiveScreenHeight(5.685)}px;
+  background-color: rgba(242, 196, 127, 0.27);
+  border-radius: 13px;
+  margin-top: ${responsiveScreenHeight(1.79)}px;
+  align-items: center;
+  background-color: #877160;
+  padding: 15px 110px;
+`;
+
+export const BackBtn = styled.Pressable`
+  width: ${responsiveScreenWidth(88.2)}px;
+  height: ${responsiveScreenHeight(5.685)}px;
+  border-radius: 13px;
+  margin-top: ${responsiveScreenHeight(1)}px;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px 110px;
+`;
+
+export const DateWrapper = styled.View`
+  width: ${responsiveScreenWidth(88.2)}px;
+  flex-direction: row-reverse;
+`;
+
+export const FoodWrapper = styled.View`
+  width: ${responsiveScreenWidth(88.2)}px;
+  border-radius: 13px;
+  background-color: #ffffff;
+  height: auto;
+  padding: 16px 25px;
+  margin-top: 8px;
 `;

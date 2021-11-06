@@ -1,7 +1,7 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import { ListContext } from '../../context/List';
-import Card from '../card/Card';
+import RecipeCard from '../card/RecipeCard';
 import {
   BackgroundWrapper,
   BodySection,
@@ -9,22 +9,24 @@ import {
   PageHeader,
 } from '../menu/MenuStyle';
 
-const Menu = () => {
+const Recipes = () => {
   return (
     <ListContext.Consumer>
       {({ purchaseList }) => (
         <BackgroundWrapper>
           <HeaderSection>
-            <PageHeader>메뉴 담기</PageHeader>
+            <PageHeader>레시피 탐색</PageHeader>
           </HeaderSection>
           <BodySection>
-            {/* <ScrollView>
+            <ScrollView contentContainerStyle={styles.contentContainer}>
               {purchaseList.map((content) => (
-                <View key={content.id} value={content}>
-                  <Card props={content} />
-                </View>
+                <RecipeCard
+                  key={content.id}
+                  title={content.title}
+                  subTitle={content.subTitle}
+                />
               ))}
-            </ScrollView> */}
+            </ScrollView>
           </BodySection>
         </BackgroundWrapper>
       )}
@@ -32,4 +34,14 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+const styles = StyleSheet.create({
+  contentContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    paddingTop: 10,
+    paddingLeft: 17,
+    paddingRight: 17,
+  },
+});
+export default Recipes;
