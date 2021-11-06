@@ -1,24 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { BasketWhiteSvg } from '../../../assets/svg/Svg';
 import { ListContext } from '../../context/List';
 import {
   BackgroundWrapper,
-  BasketButton,
   BodySection,
   HeaderSection,
-  ListNum,
-  ListNumContainer,
   PageHeader,
   SubmitButton,
 } from './MenuStyle';
-import ModalComponent from '../modal/ModalComponent';
 import NuturientTypeInfo from '../nuturient/NuturientTypeInfo';
 import NuturientWarning from '../nuturient/NuturientWarning';
+import Toggle from '../toggleButton/Toggle';
 
 const TotalNuturient = ({ navigation }) => {
-  const [click, setClick] = useState(false);
   const [calory, setCalory] = useState([
     { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
     { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
@@ -75,21 +70,7 @@ const TotalNuturient = ({ navigation }) => {
           <SubmitButton onPress={() => navigation.navigate('TotalMenu')}>
             <Icon name="chevron-right" size={35} color="#877160" />
           </SubmitButton>
-          <BasketButton
-            value={click}
-            onPress={() => {
-              setClick(!click);
-            }}
-          >
-            <ListNumContainer isVisible={click}>
-              <ListNum>{totalNum}</ListNum>
-            </ListNumContainer>
-            {click ? (
-              <Icon name="x" size={30} color="#877160" />
-            ) : (
-              <BasketWhiteSvg />
-            )}
-          </BasketButton>
+          <Toggle />
         </BackgroundWrapper>
       )}
     </ListContext.Consumer>

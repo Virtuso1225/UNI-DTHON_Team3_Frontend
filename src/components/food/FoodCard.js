@@ -11,7 +11,7 @@ const FoodCard = ({ name, num, price }) => {
   const TotalPrice = num * price;
   return (
     <CardWrapper>
-      <LeftWrapper></LeftWrapper>
+      <LeftWrapper />
 
       <PriceWrapper>
         <CustomText
@@ -26,7 +26,7 @@ const FoodCard = ({ name, num, price }) => {
           font="Bold"
           color="#6B6B6B"
         >
-          {TotalPrice}\
+          {TotalPrice}
         </CustomText>
       </PriceWrapper>
     </CardWrapper>
