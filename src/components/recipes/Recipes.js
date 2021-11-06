@@ -12,14 +12,14 @@ import {
 const Recipes = () => {
   return (
     <ListContext.Consumer>
-      {({ purchaseList }) => (
+      {({ menuList }) => (
         <BackgroundWrapper>
           <HeaderSection>
             <PageHeader>레시피 탐색</PageHeader>
           </HeaderSection>
           <BodySection>
             <ScrollView contentContainerStyle={styles.contentContainer}>
-              {purchaseList.map((content) => (
+              {menuList.map((content) => (
                 <RecipeCard
                   key={content.id}
                   title={content.title}

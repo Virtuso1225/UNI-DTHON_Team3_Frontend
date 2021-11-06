@@ -24,11 +24,13 @@ const ModalComponent = ({ props }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const { purchaseList, setPurchaseList, setTotalNum, totalNum } =
     useContext(ListContext);
-  const subTitle = props.subTitle;
-  const menuTitle = props.title;
+  const subTitle = props.subname;
+  const menuTitle = props.name;
 
   const purchaseListInsert = () => {
-    const index = purchaseList.findIndex((content) => content.id === props.id);
+    const index = purchaseList.findIndex(
+      (content) => content._id === props._id
+    );
     const content = {
       ...purchaseList[index],
       count: purchaseList[index].count + 1,
@@ -109,7 +111,7 @@ const ModalComponent = ({ props }) => {
                   setTotalNum(totalNum + 1);
                   purchaseList
                     ? purchaseList.findIndex(
-                        (content) => content.id === props.id
+                        (content) => content._id === props._id
                       ) !== -1
                       ? purchaseListInsert()
                       : setPurchaseList([

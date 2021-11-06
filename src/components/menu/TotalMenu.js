@@ -7,20 +7,15 @@ import { ListContext } from '../../context/List';
 import {
   BackBtn,
   BackgroundWrapper,
-  BasketButton,
-  BodySection,
   HeaderSection,
   DateWrapper,
-  ListNum,
-  ListNumContainer,
   PageHeader,
   SaveBtn,
-  SubmitButton,
   FoodWrapper,
 } from './MenuStyle';
-import ModalComponent from '../modal/ModalComponent';
 import { CustomText } from '../CustomText';
 import FoodCard from '../food/FoodCard';
+import moment from 'moment';
 
 const TotalMenu = ({ navigation }) => {
   const [foods, setFoods] = useState([
@@ -34,6 +29,7 @@ const TotalMenu = ({ navigation }) => {
       // Error saving data
     }
   };
+  const Date = moment().format('YYYY.MM.DD');
   return (
     <ListContext.Consumer>
       {({ purchaseList, totalNum }) => (
@@ -45,10 +41,10 @@ const TotalMenu = ({ navigation }) => {
             <DateWrapper>
               <CustomText
                 size={responsiveScreenFontSize(1.58)}
-                font="Light"
+                font="Medium"
                 color="#877160"
               >
-                2021.11.06
+                {Date}
               </CustomText>
             </DateWrapper>
             <FoodWrapper>
@@ -80,16 +76,6 @@ const TotalMenu = ({ navigation }) => {
               </CustomText>
             </BackBtn>
           </ScrollView>
-          {/* <SubmitButton onPress={() => navigation.navigate('TotalNuturient')}>
-            <Icon name="chevron-right" size={35} color="#877160" />
-          </SubmitButton>
-          <BasketButton
-            value={click}
-            onPress={() => {
-              setClick(!click);
-            }}
-          > */}
-          {/* </BasketButton> */}
         </BackgroundWrapper>
       )}
     </ListContext.Consumer>

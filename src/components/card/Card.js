@@ -19,11 +19,13 @@ import {
 const Card = ({ props }) => {
   const { setTotalNum, totalNum, setPurchaseList, purchaseList } =
     useContext(ListContext);
-  const subTitle = props.subTitle;
-  const title = props.title;
+  const subTitle = props.subname;
+  const title = props.name;
 
   const purchaseListInsert = () => {
-    const index = purchaseList.findIndex((content) => content.id === props.id);
+    const index = purchaseList.findIndex(
+      (content) => content._id === props._id
+    );
     const content = {
       ...purchaseList[index],
       count: purchaseList[index].count + 1,
@@ -41,7 +43,7 @@ const Card = ({ props }) => {
         onPress={() => {
           setTotalNum(totalNum + 1);
           purchaseList
-            ? purchaseList.findIndex((content) => content.id === props.id) !==
+            ? purchaseList.findIndex((content) => content._id === props._id) !==
               -1
               ? purchaseListInsert()
               : setPurchaseList([...purchaseList, { ...props, count: 1 }])
