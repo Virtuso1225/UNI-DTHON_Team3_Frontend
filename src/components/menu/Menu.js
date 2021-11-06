@@ -1,30 +1,22 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Animated, ScrollView, View, StyleSheet, Text } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { responsiveScreenWidth } from 'react-native-responsive-dimensions';
-import { BasketWhiteSvg } from '../../../assets/svg/Svg';
-import { ListContext } from '../../context/List';
 import {
   BackgroundWrapper,
-  BasketButton,
   BodySection,
   HeaderSection,
-  ListNum,
-  ListNumContainer,
   PageHeader,
   SubmitButton,
-  MiniMenu,
-  Revoke,
-  CountContainer,
 } from './MenuStyle';
 import ModalComponent from '../modal/ModalComponent';
 import url from '../../Global';
-import { CustomText } from '../CustomText';
-import toggle from '../toggleButton/Toggle';
 import Toggle from '../toggleButton/Toggle';
+import { ListContext, ProgressContext } from '../../context';
+import Spinner from '../..';
 
 const Menu = ({ navigation }) => {
+  const { spinner, inProgress } = useContext(ProgressContext);
   const dataurl = url();
   const getList = async () => {
     try {
@@ -36,17 +28,25 @@ const Menu = ({ navigation }) => {
 
   const { menuList, setMenuList } = useContext(ListContext);
 
-  const ListFatch = async () => {
-    const list = await getList();
-    setMenuList(list.data.body);
+  const ListFetch = async () => {
+    try {
+      spinner.start();
+      const list = await getList();
+      setMenuList(list.data.body);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setTimeout(spinner.stop, 2000);
+    }
   };
 
   useEffect(() => {
-    ListFatch();
+    ListFetch();
   }, []);
 
   return (
     <BackgroundWrapper>
+      {inProgress ? <Spinner /> : <></>}
       <HeaderSection>
         <PageHeader>메뉴 담기</PageHeader>
       </HeaderSection>

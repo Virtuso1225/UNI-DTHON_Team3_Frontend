@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useFonts } from 'expo-font';
 import Apploading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native';
 import Mainpage from './src/pages/Mainpage';
-import { ListContext, ListProvider } from './src/context/List';
-
+import Spinner from './src/Spinner';
+import { ListProvider, ProgressProvider, ProgressContext } from './src/context';
 const App = () => {
   const [fontsLoaded] = useFonts({
     Thin: require('./assets/fonts/SCDream1.otf'),
@@ -19,13 +19,17 @@ const App = () => {
   if (!fontsLoaded) {
     return <Apploading />;
   }
+  const { inProgress } = useContext(ProgressContext);
 
   return (
-    <ListProvider>
-      <NavigationContainer>
-        <Mainpage />
-      </NavigationContainer>
-    </ListProvider>
+    <ProgressProvider>
+      <ListProvider>
+        <NavigationContainer>
+          <Mainpage />
+          {inProgress && <Spinner />}
+        </NavigationContainer>
+      </ListProvider>
+    </ProgressProvider>
   );
 };
 
