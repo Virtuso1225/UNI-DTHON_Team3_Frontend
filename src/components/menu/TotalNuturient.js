@@ -115,36 +115,28 @@ const TotalNuturient = ({ navigation }) => {
   ]);
 
   return (
-    <ListContext.Consumer>
-      {({ purchaseList, totalNum }) => (
-        <BackgroundWrapper>
-          <HeaderSection>
-            <PageHeader>영양 정보</PageHeader>
-          </HeaderSection>
-          <BodySection>
-            <ScrollView contentContainerStyle={styles.contentContainer}>
-              <NuturientTypeInfo
-                nulist={calory}
-                type="총 열량"
-                sum={totalCal}
-              />
+    <BackgroundWrapper>
+      <HeaderSection>
+        <PageHeader>영양 정보</PageHeader>
+      </HeaderSection>
+      <BodySection>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <NuturientTypeInfo nulist={calory} type="총 열량" sum={totalCal} />
 
-              <NuturientTypeInfo nulist={tan} type="탄수화물" sum={totalTan} />
-              <NuturientTypeInfo nulist={dan} type="단백질" sum={totalDan} />
-              <NuturientTypeInfo nulist={ji} type="지방" sum={totalJi} />
-              <NuturientTypeInfo nulist={na} type="나트륨" sum={totalNa} />
-              {warninglist.map((content) => (
-                <NuturientWarning key={content.index} text={content} />
-              ))}
-            </ScrollView>
-          </BodySection>
-          <SubmitButton onPress={() => navigation.navigate('TotalMenu')}>
-            <Icon name="chevron-right" size={35} color="#877160" />
-          </SubmitButton>
-          <Toggle />
-        </BackgroundWrapper>
-      )}
-    </ListContext.Consumer>
+          <NuturientTypeInfo nulist={tan} type="탄수화물" sum={totalTan} />
+          <NuturientTypeInfo nulist={dan} type="단백질" sum={totalDan} />
+          <NuturientTypeInfo nulist={ji} type="지방" sum={totalJi} />
+          <NuturientTypeInfo nulist={na} type="나트륨" sum={totalNa} />
+          {warninglist.map((content) => (
+            <NuturientWarning key={content.index} text={content} />
+          ))}
+        </ScrollView>
+      </BodySection>
+      <SubmitButton onPress={() => navigation.navigate('TotalMenu')}>
+        <Icon name="chevron-right" size={35} color="#877160" />
+      </SubmitButton>
+      <Toggle />
+    </BackgroundWrapper>
   );
 };
 

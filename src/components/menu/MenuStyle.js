@@ -88,16 +88,18 @@ export const SaveBtn = styled.Pressable`
   align-items: center;
   justify-content: center;
   background-color: #877160;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: ${responsiveScreenHeight(1.79)}px;
 `;
 
 export const BackBtn = styled.Pressable`
   width: ${responsiveScreenWidth(88.2)}px;
   height: ${responsiveScreenHeight(5.685)}px;
   border-radius: 13px;
-  margin-top: ${responsiveScreenHeight(1)}px;
   align-items: center;
   background-color: #ffffff;
   padding: 15px 110px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
 
 export const DateWrapper = styled.View`
@@ -110,8 +112,9 @@ export const FoodWrapper = styled.View`
   border-radius: 13px;
   background-color: #ffffff;
   height: auto;
-  padding: 16px 25px;
   margin-top: 8px;
+  align-items: center;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
 
 export const MenuBottomList = styled.View`

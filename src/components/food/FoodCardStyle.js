@@ -6,13 +6,16 @@ import {
 } from 'react-native-responsive-dimensions';
 
 export const CardWrapper = styled.View`
-  width: ${responsiveScreenWidth(88.2)}px;
-  align-items: center;
+  width: ${responsiveScreenWidth(78)}px;
   height: ${responsiveScreenHeight(8.88)}px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const LeftWrapper = styled.View``;
+
 export const PriceWrapper = styled.View`
-  align-items: flex-end;
-  margin-left: ${responsiveScreenWidth(35.1)}px;
+  align-self: flex-end;
+  justify-content: center;
+  align-items: center;
 `;

@@ -1,5 +1,5 @@
 const url = () => {
-  const dataurl = 'http://4eb1-210-108-88-230.ngrok.io';
+  const dataurl = 'http://3.34.71.161';
   return dataurl;
 };
 

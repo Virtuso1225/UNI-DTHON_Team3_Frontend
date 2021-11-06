@@ -7,12 +7,11 @@ import { ListContext } from '../../context/List';
 import { CustomText } from '../CustomText';
 import { CardWrapper, LeftWrapper, PriceWrapper } from './FoodCardStyle';
 
-const FoodCard = ({ name, num, price }) => {
-  const TotalPrice = num * price;
+const FoodCard = ({ name, num }) => {
+  console.log({ name, num });
   return (
     <CardWrapper>
       <LeftWrapper />
-
       <PriceWrapper>
         <CustomText
           size={responsiveScreenFontSize(2.1)}
@@ -20,13 +19,6 @@ const FoodCard = ({ name, num, price }) => {
           color="#000000"
         >
           {name} {num}개
-        </CustomText>
-        <CustomText
-          size={responsiveScreenFontSize(1.9)}
-          font="Bold"
-          color="#6B6B6B"
-        >
-          {TotalPrice}
         </CustomText>
       </PriceWrapper>
     </CardWrapper>

@@ -4,7 +4,14 @@ import { responsiveScreenHeight } from 'react-native-responsive-dimensions';
 import Recipes from '../components/recipes/Recipes';
 import Mypage from '../components/mypage/Mypage';
 import { NavigationWrapper, TextWrapper } from './MainpageStyle';
-import { BasketSvg, MypageSvg, RecipesSvg } from '../../assets/svg/Svg';
+import {
+  BasketNotSvg,
+  BasketSvg,
+  MypageNotSvg,
+  MypageSvg,
+  RecipeNotSvg,
+  RecipesSvg,
+} from '../../assets/svg/Svg';
 import MenuStack from './MenuStack';
 
 const Tab = createBottomTabNavigator();
@@ -35,7 +42,7 @@ const Mainpage = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <NavigationWrapper>
-              {focused ? <RecipesSvg /> : <RecipesSvg />}
+              {focused ? <RecipesSvg /> : <RecipeNotSvg />}
               <TextWrapper activated={focused}>레시피</TextWrapper>
             </NavigationWrapper>
           ),
@@ -48,7 +55,7 @@ const Mainpage = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <NavigationWrapper>
-              {focused ? <BasketSvg /> : <BasketSvg />}
+              {focused ? <BasketSvg /> : <BasketNotSvg />}
               <TextWrapper activated={focused}>장바구니</TextWrapper>
             </NavigationWrapper>
           ),
@@ -61,7 +68,7 @@ const Mainpage = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <NavigationWrapper>
-              {focused ? <MypageSvg /> : <MypageSvg />}
+              {focused ? <MypageSvg /> : <MypageNotSvg />}
               <TextWrapper activated={focused}>지난 기록</TextWrapper>
             </NavigationWrapper>
           ),

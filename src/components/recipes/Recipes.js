@@ -34,7 +34,7 @@ const Recipes = () => {
     } catch (e) {
       console.log(e);
     } finally {
-      setTimeout(spinner.stop, 2000);
+      setTimeout(spinner.stop, 800);
     }
   };
 
