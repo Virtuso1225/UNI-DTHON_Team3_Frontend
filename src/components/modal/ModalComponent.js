@@ -3,7 +3,7 @@ import { Modal, Pressable, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Close from 'react-native-vector-icons/Feather';
 import { responsiveScreenFontSize } from 'react-native-responsive-dimensions';
-import Card from './Card';
+import Card from '../card/Card';
 import {
   CenterView,
   RowWrapper,
@@ -15,9 +15,9 @@ import {
   CloseWrapper,
   IngredientSection,
 } from './ModalComponentStyle';
-import { CustomText } from './CustomText';
-import { ListContext } from '../context/List';
-import NuturientInfo from './NuturientInfo';
+import { CustomText } from '../CustomText';
+import { ListContext } from '../../context/List';
+import NuturientInfo from '../nuturient/NuturientInfo';
 
 const ModalComponent = ({ props }) => {
   const [modalVisible, setModalVisible] = useState(false);

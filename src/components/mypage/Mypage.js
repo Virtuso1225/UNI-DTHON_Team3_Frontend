@@ -1,15 +1,15 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
-import { ListContext } from '../context/List';
-import Card from './Card';
+import { ListContext } from '../../context/List';
+import Card from '../card/Card';
 import {
   BackgroundWrapper,
   BodySection,
   HeaderSection,
   PageHeader,
-} from './MenuStyle';
+} from '../menu/MenuStyle';
 
-const Menu = () => {
+const Mypage = () => {
   return (
     <ListContext.Consumer>
       {({ purchaseList }) => (
@@ -32,4 +32,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default Mypage;

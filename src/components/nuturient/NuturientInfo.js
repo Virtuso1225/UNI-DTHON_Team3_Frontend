@@ -1,6 +1,6 @@
 import React from 'react';
 import { responsiveScreenFontSize } from 'react-native-responsive-dimensions';
-import { CustomText } from './CustomText';
+import { CustomText } from '../CustomText';
 import {
   ColumnWrapper,
   Nutrient,

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { BasketWhiteSvg } from '../../assets/svg/Svg';
-import { ListContext } from '../context/List';
+import { BasketWhiteSvg } from '../../../assets/svg/Svg';
+import { ListContext } from '../../context/List';
 import {
   BackgroundWrapper,
   BasketButton,
@@ -13,7 +13,7 @@ import {
   PageHeader,
   SubmitButton,
 } from './MenuStyle';
-import ModalComponent from './ModalComponent';
+import ModalComponent from '../modal/ModalComponent';
 
 const Menu = () => {
   const [click, setClick] = useState(false);

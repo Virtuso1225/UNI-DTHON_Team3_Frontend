@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Mypage from '../components/Mypage';
+import Menu from '../components/menu/Menu';
 
 const Stack = createStackNavigator();
 
@@ -9,7 +9,7 @@ const MenuStack = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="Mypage"
-        component={Mypage}
+        component={Menu}
         options={{
           headerShown: false,
           unmountOnBlur: true,
