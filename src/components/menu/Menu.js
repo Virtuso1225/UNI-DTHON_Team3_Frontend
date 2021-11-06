@@ -24,33 +24,35 @@ import { CustomText } from '../CustomText';
 
 const Menu = ({ navigation }) => {
   const [click, setClick] = useState(false);
-      
-  // const axios = require('axios');
-  // const url = url;
+  const dataurl = url();
+  const getList = async () => {
+    try {
+      return await axios.get(`${dataurl}/food/getallfood`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // const getList = async () => {
-  //   try {
-  //     return await axios.get(`${url}/food/getallfood`);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const { menuList, setMenuList } = useContext(ListContext);
 
-  // const ListFatch = async () => {
-  //   const list = await getList();
+  const ListFatch = async () => {
+    const list = await getList()
+      .then((response) => {
+        if (response.data.message) {
+          setMenuList(list);
+        }
+      })
+      .catch((err) => {
+        console.log(error);
+      });
+  };
 
-  //   if (list.data.message) {
-  //     console.log(`${Object.entries(list.data.message).length}입니다.`);
-  //   }
-  // };
+  useEffect(() => {
+    ListFatch();
+  }, []);
 
-  // useEffect(()=>{
-
-  //   ListFatch();
-
-  // },[]);
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const { purchaseList, setPurchaseList, totalNum, menuList, setTotalNum } =
+  const { purchaseList, setPurchaseList, totalNum, setTotalNum } =
     useContext(ListContext);
   const setVisible = () => {
     Animated.timing(fadeAnim, {

@@ -112,7 +112,7 @@ export const FoodWrapper = styled.View`
   height: auto;
   padding: 16px 25px;
   margin-top: 8px;
-
+`;
 export const MenuBottomList = styled.View`
   width: ${responsiveScreenWidth(86.6)}px;
   height: ${responsiveScreenWidth(15)}px;
