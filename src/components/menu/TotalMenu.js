@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { responsiveScreenFontSize } from 'react-native-responsive-dimensions';
-import { ScrollView, View, StyleSheet, AsyncStorage } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import { BasketWhiteSvg } from '../../../assets/svg/Svg';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import { ListContext } from '../../context/List';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   BackBtn,
   BackgroundWrapper,
@@ -22,8 +21,10 @@ import axios from 'axios';
 const TotalMenu = ({ navigation }) => {
   const [keyArray, setKeyArrray] = useState([]);
   const [newObj, setNewObj] = useState({});
+  const [history, setHistory] = useState({});
   const dataurl = url();
-  const { setTotalNum, totalNum, purchaseList } = useContext(ListContext);
+  const { setTotalNum, totalNum, purchaseList, setPurchaseList } =
+    useContext(ListContext);
 
   let nameList = [];
   const handler = (content) => {
@@ -49,18 +50,32 @@ const TotalMenu = ({ navigation }) => {
     }
   };
   let temp = {};
+  const Date = moment().format();
   const listFetch = async () => {
     const list = await getList();
     temp = list.data.body['result'];
     setNewObj(temp);
+    setHistory({ ...history, Date: { ...temp, date: Date } });
     setKeyArrray(Object.keys(temp));
+  };
+
+  const storeData = async () => {
+    try {
+      const jsonValue = JSON.stringify(history);
+      await AsyncStorage.setItem('@storage_Key', jsonValue);
+      setPurchaseList([]);
+      setTotalNum(0);
+      navigation.navigate('Mypage');
+    } catch (e) {
+      // saving error
+    }
   };
 
   useEffect(() => {
     listFetch();
   }, []);
 
-  const Date = moment().format('YYYY.MM.DD');
+  const SemiDate = moment().format('YYYY.MM.DD');
   return (
     <BackgroundWrapper>
       <HeaderSection>
@@ -73,25 +88,16 @@ const TotalMenu = ({ navigation }) => {
             font="Medium"
             color="#877160"
           >
-            {Date}
+            {SemiDate}
           </CustomText>
         </DateWrapper>
         <FoodWrapper>
           {console.log(keyArray)}
-          {keyArray.map(
-            (content, index) => (
-              console.log(newObj),
-              (
-                <FoodCard
-                  key={index}
-                  name={content}
-                  num={newObj[`${content}`]}
-                />
-              )
-            )
-          )}
+          {keyArray.map((content, index) => (
+            <FoodCard key={index} name={content} num={newObj[`${content}`]} />
+          ))}
         </FoodWrapper>
-        <SaveBtn onPress={() => _storeData()}>
+        <SaveBtn onPress={() => storeData()}>
           <CustomText
             size={responsiveScreenFontSize(1.97)}
             font="Regular"

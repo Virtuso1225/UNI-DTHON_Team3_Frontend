@@ -20,18 +20,9 @@ const TotalNuturient = ({ navigation }) => {
 
   const [calory, setCalory] = useState([]);
   const [tan, setTan] = useState([]);
-  const [dan, setDan] = useState([
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-  ]);
-  const [ji, setJi] = useState([
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-  ]);
-  const [na, setNa] = useState([
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-  ]);
+  const [dan, setDan] = useState([]);
+  const [ji, setJi] = useState([]);
+  const [na, setNa] = useState([]);
   const [totalCal, setTotalCal] = useState(444);
   const [totalTan, setTotalTan] = useState(444);
   const [totalDan, setTotalDan] = useState(444);
