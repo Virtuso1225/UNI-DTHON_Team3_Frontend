@@ -18,14 +18,8 @@ import url from '../../Global';
 const TotalNuturient = ({ navigation }) => {
   const dataurl = url();
 
-  const [calory, setCalory] = useState([
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-  ]);
-  const [tan, setTan] = useState([
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-    { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
-  ]);
+  const [calory, setCalory] = useState([]);
+  const [tan, setTan] = useState([]);
   const [dan, setDan] = useState([
     { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
     { subtitle: '새콤달콤', title: '김치볶음밥', value: 123 },
@@ -43,21 +37,77 @@ const TotalNuturient = ({ navigation }) => {
   const [totalDan, setTotalDan] = useState(444);
   const [totalJi, setTotalJi] = useState(444);
   const [totalNa, setTotalNa] = useState(444);
+  const { setTotalNum, totalNum, purchaseList } = useContext(ListContext);
 
-  const { setTotalNum, totalNum, setPurchaseList, purchaseList } =
-    useContext(ListContext);
+  let nameList = [];
+  const handler = (content) => {
+    for (let i = 0; i < content.count; i++)
+      nameList = nameList.concat(content.name);
+  };
+  purchaseList.map((item) => handler(item));
+  const str = nameList.join(',');
 
-  // const getList = async () => {
-  //   try {
-  //     return await axios.get(`${dataurl}/food/getfoodnut/?name=`);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const getList = async () => {
+    try {
+      return await axios.get(`${dataurl}/food/getfoodnut/?name=${str}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // const ListFatch = async () => {
-  //   const list = await getList();
-  // };
+  let newCalory = [],
+    newTan = [],
+    newDan = [],
+    newJi = [],
+    newNa = [];
+  let totalCalory = 0,
+    totalTansu = 0,
+    totalDanb = 0,
+    totalJib = 0,
+    totalNat = 0;
+  const ListFetch = async () => {
+    const list = await getList();
+    list.data.body.map((item) => {
+      const cnt = purchaseList.find((item2) => item2.name === item.name).count;
+      newCalory = [
+        ...newCalory,
+        { title: item.name, value: item.nutrition.total_carb * cnt },
+      ];
+      newTan = [
+        ...newTan,
+        { title: item.name, value: item.nutrition.carb * cnt },
+      ];
+      newDan = [
+        ...newDan,
+        { title: item.name, value: item.nutrition.protein * cnt },
+      ];
+      newJi = [...newJi, { title: item.name, value: item.nutrition.fat * cnt }];
+      newNa = [
+        ...newNa,
+        { title: item.name, value: item.nutrition.salt * cnt },
+      ];
+      totalCalory += item.nutrition.total_carb * cnt;
+      totalTansu += item.nutrition.carb * cnt;
+      totalDanb += item.nutrition.protein * cnt;
+      totalJib += item.nutrition.fat * cnt;
+      totalNat += item.nutrition.salt * cnt;
+    });
+    setTotalCal(totalCalory + 'kcal');
+    setTotalTan(totalTansu + 'g');
+    setTotalDan(totalDanb + 'g');
+    setTotalJi(totalJib + 'g');
+    setTotalNa(totalNat + 'mg');
+
+    setCalory(newCalory);
+    setTan(newTan);
+    setDan(newDan);
+    setJi(newJi);
+    setNa(newNa);
+  };
+
+  useEffect(() => {
+    ListFetch();
+  }, []);
 
   const [warninglist, setWarninglist] = useState([
     '열량이 높은 음식이예요',
@@ -78,6 +128,7 @@ const TotalNuturient = ({ navigation }) => {
                 type="총 열량"
                 sum={totalCal}
               />
+
               <NuturientTypeInfo nulist={tan} type="탄수화물" sum={totalTan} />
               <NuturientTypeInfo nulist={dan} type="단백질" sum={totalDan} />
               <NuturientTypeInfo nulist={ji} type="지방" sum={totalJi} />
