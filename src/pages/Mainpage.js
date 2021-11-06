@@ -36,7 +36,7 @@ const Mainpage = () => {
           tabBarIcon: ({ focused }) => (
             <NavigationWrapper>
               {focused ? <RecipesSvg /> : <RecipesSvg />}
-              <TextWrapper activated={focused}>장바구니</TextWrapper>
+              <TextWrapper activated={focused}>레시피</TextWrapper>
             </NavigationWrapper>
           ),
           unmountOnBlur: true,
@@ -62,7 +62,7 @@ const Mainpage = () => {
           tabBarIcon: ({ focused }) => (
             <NavigationWrapper>
               {focused ? <MypageSvg /> : <MypageSvg />}
-              <TextWrapper activated={focused}>장바구니</TextWrapper>
+              <TextWrapper activated={focused}>지난 기록</TextWrapper>
             </NavigationWrapper>
           ),
           unmountOnBlur: true,

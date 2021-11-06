@@ -9,7 +9,7 @@ import {
   Calorie,
 } from './NuturientInfoStyle';
 
-const NuturientInfo = () => {
+const NuturientInfo = ({ nutrition }) => {
   return (
     <NutrientsSection>
       <NutrientSWrapper>
@@ -27,7 +27,7 @@ const NuturientInfo = () => {
               font="Bold"
               color="#000000"
             >
-              120g
+              {nutrition.carb}g
             </CustomText>
           </Nutrient>
           <Nutrient>
@@ -43,7 +43,7 @@ const NuturientInfo = () => {
               font="Bold"
               color="#000000"
             >
-              23g
+              {nutrition.protein}g
             </CustomText>
           </Nutrient>
         </ColumnWrapper>
@@ -61,7 +61,7 @@ const NuturientInfo = () => {
               font="Bold"
               color="#000000"
             >
-              20g
+              {nutrition.fat}g
             </CustomText>
           </Nutrient>
           <Nutrient>
@@ -77,7 +77,7 @@ const NuturientInfo = () => {
               font="Bold"
               color="#000000"
             >
-              179mg
+              {nutrition.salt}mg
             </CustomText>
           </Nutrient>
         </ColumnWrapper>
@@ -88,7 +88,7 @@ const NuturientInfo = () => {
           font="ExtraBold"
           color="#942121"
         >
-          756kcal
+          {nutrition.total_carb}kcal
         </CustomText>
       </Calorie>
     </NutrientsSection>

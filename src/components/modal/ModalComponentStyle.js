@@ -5,14 +5,14 @@ import {
   responsiveScreenFontSize,
 } from 'react-native-responsive-dimensions';
 
-export const CenterView = styled.View`
+export const CenterView = styled.Pressable`
   flex: 1;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-export const ModalWrapper = styled.View`
+export const ModalWrapper = styled.Pressable`
   width: ${responsiveScreenWidth(84.35)}px;
   height: ${responsiveScreenHeight(73.62)}px;
   border-radius: 11px;

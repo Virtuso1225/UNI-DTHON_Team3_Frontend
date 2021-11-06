@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Modal, Pressable, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import axios from 'axios';
 import Close from 'react-native-vector-icons/Feather';
 import { responsiveScreenFontSize } from 'react-native-responsive-dimensions';
 import Card from '../card/Card';
@@ -19,13 +20,37 @@ import { CustomText } from '../CustomText';
 import { ListContext } from '../../context/List';
 import NuturientInfo from '../nuturient/NuturientInfo';
 import { Ingredient, SubIngredient } from '../ingredient/Ingredient';
+import url from '../../Global';
+import { useEffect } from 'react/cjs/react.development';
 
 const ModalComponent = ({ props }) => {
+  const dataurl = url();
+  const subTitle = props.subname;
+  const menuTitle = props.name;
+  const [mainIngre, setMainIngre] = useState(['']);
+  const [subIngre, setSubIngre] = useState(['']);
+  const [nutrition, setNutrition] = useState([0]);
+  const getList = async () => {
+    try {
+      return await axios.get(`${dataurl}/food/getfooddata/${menuTitle}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const ListFetch = async () => {
+    const list = await getList();
+    setNutrition(list.data.body.nutrition);
+    setMainIngre(list.data.body.ingredients);
+    setSubIngre(list.data.body.sauce);
+  };
+
+  useEffect(() => {
+    ListFetch();
+  }, []);
   const [modalVisible, setModalVisible] = useState(false);
   const { purchaseList, setPurchaseList, setTotalNum, totalNum } =
     useContext(ListContext);
-  const subTitle = props.subname;
-  const menuTitle = props.name;
 
   const purchaseListInsert = () => {
     const index = purchaseList.findIndex(
@@ -51,8 +76,8 @@ const ModalComponent = ({ props }) => {
           visible={modalVisible}
           onRequestClose={() => setModalVisible(!modalVisible)}
         >
-          <CenterView>
-            <ModalWrapper>
+          <CenterView onPress={() => setModalVisible(!modalVisible)}>
+            <ModalWrapper onPress={() => {}}>
               <CloseWrapper onPress={() => setModalVisible(!modalVisible)}>
                 <Close name="x" size={30} color="#877160" />
               </CloseWrapper>
@@ -72,7 +97,7 @@ const ModalComponent = ({ props }) => {
                   {menuTitle}
                 </CustomText>
               </TitleSection>
-              <NuturientInfo />
+              <NuturientInfo nutrition={nutrition} />
               <AlertInfo isVisible>
                 <Icon name="alert-circle" size={20} color="#942121" />
                 <CustomText
@@ -92,7 +117,7 @@ const ModalComponent = ({ props }) => {
                 >
                   재료
                 </CustomText>
-                <Ingredient />
+                <Ingredient mainIngre={mainIngre} />
               </IngredientSection>
               <IngredientSection>
                 <CustomText
@@ -102,7 +127,7 @@ const ModalComponent = ({ props }) => {
                 >
                   부재료
                 </CustomText>
-                <SubIngredient />
+                <SubIngredient subIngre={subIngre} />
               </IngredientSection>
               <Button
                 color="#877160"

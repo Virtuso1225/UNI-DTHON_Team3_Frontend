@@ -1,6 +1,9 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useContext } from 'react';
 import { ScrollView, View, StyleSheet, Linking } from 'react-native';
+import { useEffect } from 'react/cjs/react.development';
 import { ListContext } from '../../context/List';
+import url from '../../Global';
 import RecipeCard from '../card/RecipeCard';
 import {
   BackgroundWrapper,
@@ -10,6 +13,26 @@ import {
 } from '../menu/MenuStyle';
 
 const Recipes = () => {
+  const dataurl = url();
+  const getList = async () => {
+    try {
+      return await axios.get(`${dataurl}/food/getallfood`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const { menuList, setMenuList } = useContext(ListContext);
+
+  const ListFatch = async () => {
+    const list = await getList();
+    setMenuList(list.data.body);
+  };
+
+  useEffect(() => {
+    ListFatch();
+  }, []);
+
   return (
     <ListContext.Consumer>
       {({ menuList }) => (
@@ -21,10 +44,10 @@ const Recipes = () => {
             <ScrollView contentContainerStyle={styles.contentContainer}>
               {menuList.map((content) => (
                 <RecipeCard
-                  key={content.id}
-                  title={content.title}
-                  subTitle={content.subTitle}
-                  onPress={() => Linking.openURL('http://naver.com/')}
+                  key={content._id}
+                  title={content.name}
+                  subTitle={content.subname}
+                  
                 />
               ))}
             </ScrollView>

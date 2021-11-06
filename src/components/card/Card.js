@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Image, Text } from 'react-native';
 import {
@@ -5,8 +6,9 @@ import {
   responsiveScreenWidth,
 } from 'react-native-responsive-dimensions';
 import PlusIcon from 'react-native-vector-icons/AntDesign';
-import { useContext } from 'react/cjs/react.development';
+import { useContext, useEffect } from 'react/cjs/react.development';
 import { ListContext } from '../../context/List';
+import url from '../../Global';
 import {
   CardWrapper,
   ImageSection,
@@ -17,10 +19,13 @@ import {
 } from './CardStyle';
 
 const Card = ({ props }) => {
-  const { setTotalNum, totalNum, setPurchaseList, purchaseList } =
-    useContext(ListContext);
+
   const subTitle = props.subname;
   const title = props.name;
+  const dataurl = url();
+
+  const { setTotalNum, totalNum, setPurchaseList, purchaseList } =
+    useContext(ListContext);
 
   const purchaseListInsert = () => {
     const index = purchaseList.findIndex(
@@ -58,8 +63,13 @@ const Card = ({ props }) => {
             flex: 1,
             height: responsiveScreenHeight(15.4),
             width: responsiveScreenWidth(38.71),
+            borderTopLeftRadius: 13,
+            borderTopRightRadius: 13,
           }}
-          source={require('../../../assets/icon.png')}
+          source={{
+            uri: `${dataurl}/static/${title}.jpg`,
+            method: 'GET',
+          }}
           resizeMode="cover"
         />
       </ImageSection>
