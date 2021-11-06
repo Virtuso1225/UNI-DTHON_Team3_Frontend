@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Pressable, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Close from 'react-native-vector-icons/Feather';
 import { responsiveScreenFontSize } from 'react-native-responsive-dimensions';
 import Card from './Card';
 import {
@@ -10,22 +11,18 @@ import {
   ModalWrapper,
   Button,
   TitleSection,
-  NutrientsSection,
   AlertInfo,
-  NutrientText,
-  Nutrient,
-  NutrientSWrapper,
-  ColumnWrapper,
-  Calorie,
+  CloseWrapper,
+  IngredientSection,
 } from './ModalComponentStyle';
 import { CustomText } from './CustomText';
 import { ListContext } from '../context/List';
-import { useContext } from 'react';
+import NuturientInfo from './NuturientInfo';
 
 const ModalComponent = ({ props }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const menuTitle = props.title;
-  const subTitle = props.subTitle;
+  const { subTitle } = props;
   const { setTotalNum, totalNum } = useContext(ListContext);
   return (
     <>
@@ -38,6 +35,9 @@ const ModalComponent = ({ props }) => {
         >
           <CenterView>
             <ModalWrapper>
+              <CloseWrapper onPress={() => setModalVisible(!modalVisible)}>
+                <Close name="x" size={30} color="#877160" />
+              </CloseWrapper>
               <TitleSection>
                 <CustomText
                   size={responsiveScreenFontSize(3.42)}
@@ -54,89 +54,8 @@ const ModalComponent = ({ props }) => {
                   {menuTitle}
                 </CustomText>
               </TitleSection>
-              <NutrientsSection>
-                <NutrientSWrapper>
-                  <ColumnWrapper>
-                    <Nutrient>
-                      <CustomText
-                        size={responsiveScreenFontSize(1.84)}
-                        font="Regular"
-                        color="#000000"
-                      >
-                        탄수화물{' '}
-                      </CustomText>
-                      <CustomText
-                        size={responsiveScreenFontSize(1.84)}
-                        font="Bold"
-                        color="#000000"
-                      >
-                        120g
-                      </CustomText>
-                    </Nutrient>
-                    <Nutrient>
-                      <CustomText
-                        size={responsiveScreenFontSize(1.84)}
-                        font="Regular"
-                        color="#000000"
-                      >
-                        단백질{' '}
-                      </CustomText>
-                      <CustomText
-                        size={responsiveScreenFontSize(1.84)}
-                        font="Bold"
-                        color="#000000"
-                      >
-                        23g
-                      </CustomText>
-                    </Nutrient>
-                  </ColumnWrapper>
-                  <ColumnWrapper>
-                    <Nutrient>
-                      <CustomText
-                        size={responsiveScreenFontSize(1.84)}
-                        font="Regular"
-                        color="#000000"
-                      >
-                        지방{' '}
-                      </CustomText>
-                      <CustomText
-                        size={responsiveScreenFontSize(1.84)}
-                        font="Bold"
-                        color="#000000"
-                      >
-                        20g
-                      </CustomText>
-                    </Nutrient>
-
-                    <Nutrient>
-                      <CustomText
-                        size={responsiveScreenFontSize(1.84)}
-                        font="Regular"
-                        color="#000000"
-                      >
-                        나트륨{' '}
-                      </CustomText>
-                      <CustomText
-                        size={responsiveScreenFontSize(1.84)}
-                        font="Bold"
-                        color="#000000"
-                      >
-                        179mg
-                      </CustomText>
-                    </Nutrient>
-                  </ColumnWrapper>
-                </NutrientSWrapper>
-                <Calorie>
-                  <CustomText
-                    size={responsiveScreenFontSize(1.97)}
-                    font="ExtraBold"
-                    color="#942121"
-                  >
-                    756kcal
-                  </CustomText>
-                </Calorie>
-              </NutrientsSection>
-              <AlertInfo isVisible={true}>
+              <NuturientInfo />
+              <AlertInfo isVisible>
                 <Icon name="alert-circle" size={20} color="#942121" />
                 <CustomText
                   size={responsiveScreenFontSize(1.58)}
@@ -147,6 +66,15 @@ const ModalComponent = ({ props }) => {
                   열량이 높고 비타민이 부족해요.
                 </CustomText>
               </AlertInfo>
+              <IngredientSection>
+                <CustomText
+                  size={responsiveScreenFontSize(2.37)}
+                  font="ExtraBold"
+                  color="#000000"
+                >
+                  재료
+                </CustomText>
+              </IngredientSection>
               <Button
                 color="#877160"
                 onPress={() => {
@@ -163,7 +91,6 @@ const ModalComponent = ({ props }) => {
       <Pressable
         onPress={() => {
           setModalVisible(true);
-          setTotalNum();
         }}
       >
         <Card title={menuTitle} subTitle={subTitle} />

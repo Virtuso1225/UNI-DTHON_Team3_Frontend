@@ -25,40 +25,6 @@ export const TitleSection = styled.View`
   width: ${responsiveScreenWidth(71.58)}px;
 `;
 
-export const NutrientsSection = styled.View`
-  width: ${responsiveScreenWidth(71.58)}px;
-  height: ${responsiveScreenHeight(14.5)}px;
-  background-color: rgba(242, 196, 127, 0.27);
-  border-radius: 13px;
-  margin-top: ${responsiveScreenHeight(2.72)}px;
-  align-items: center;
-`;
-
-export const NutrientSWrapper = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  border-bottom-width: 1px;
-  border-bottom-color: black;
-  width: ${responsiveScreenWidth(63.58)}px;
-  height: ${responsiveScreenHeight(7)}px;
-  margin-top: ${responsiveScreenHeight(2.36)}px;
-  justify-content: space-between;
-  padding-left: 2px;
-  padding-right: 10px;
-  margin-bottom: ${responsiveScreenHeight(1.42)}px;
-`;
-
-export const ColumnWrapper = styled.View``;
-
-export const Nutrient = styled.View`
-  flex-direction: row;
-  margin-bottom: 4px;
-`;
-
-export const Calorie = styled.View`
-  width: ${responsiveScreenWidth(63.58)}px;
-  flex-direction: row-reverse;
-`;
 export const AlertInfo = styled.View`
   width: ${responsiveScreenWidth(71.58)}px;
   height: ${responsiveScreenHeight(4.5)}px;
@@ -93,8 +59,14 @@ export const Button = styled.Pressable`
   box-shadow: 8px 8px 20px rgba(222, 215, 202, 0.57);
 `;
 
-export const RowWrapper = styled.TouchableOpacity`
+export const RowWrapper = styled.Pressable`
   flex-direction: row;
   align-items: center;
   margin-top: ${responsiveScreenHeight(4.62)}px;
+`;
+
+export const CloseWrapper = styled.Pressable`
+  position: absolute;
+  top: 10px;
+  right: 10px;
 `;

@@ -29,8 +29,6 @@ export const TitleSection = styled.View`
   justify-content: center;
 `;
 
-export const Image = styled.Image``;
-
 export const Title = styled.Text`
   font-size: ${responsiveScreenFontSize(1.45)}px;
   font-family: Medium;

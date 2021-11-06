@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Text } from 'react-native';
-import { ListContext } from '../context/List';
+import { Image, Text } from 'react-native';
 import PlusIcon from 'react-native-vector-icons/AntDesign';
+import { useContext } from 'react/cjs/react.development';
+import { ListContext } from '../context/List';
 import {
   CardWrapper,
   ImageSection,
-  Image,
   TitleSection,
   Title,
   SubTitle,
@@ -13,12 +13,16 @@ import {
 } from './CardStyle';
 
 const Card = ({ title, subTitle }) => {
+  const { setTotalNum, totalNum } = useContext(ListContext);
+
   return (
     <CardWrapper>
-      <AddButton>
+      <AddButton onPress={() => setTotalNum(totalNum + 1)}>
         <PlusIcon name="plus" size={20} color="white" />
       </AddButton>
-      <ImageSection>{/* <Image></Image> */}</ImageSection>
+      <ImageSection>
+        {/* <Image source={require('../../assets/icon.png')} resizeMode="cover" /> */}
+      </ImageSection>
       <TitleSection>
         <SubTitle>{subTitle}</SubTitle>
         <Title>{title}</Title>

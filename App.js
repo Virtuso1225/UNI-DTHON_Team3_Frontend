@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFonts } from 'expo-font';
 import Apploading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native';

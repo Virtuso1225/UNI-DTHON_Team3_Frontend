@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { responsiveScreenHeight } from 'react-native-responsive-dimensions';
 import Menu from '../components/Menu';
 import Recipes from '../components/Recipes';
 import Mypage from '../components/Mypage';
 import { NavigationWrapper, TextWrapper } from './MainpageStyle';
 import { BasketSvg, MypageSvg, RecipesSvg } from '../../assets/svg/Svg';
-import { responsiveScreenHeight } from 'react-native-responsive-dimensions';
+import { ListContext } from '../context/List';
+import MenuStack from './MenuStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -56,8 +58,8 @@ const Mainpage = () => {
         }}
       />
       <Tab.Screen
-        name="Mypage"
-        component={Mypage}
+        name="MenuStack"
+        component={MenuStack}
         options={{
           tabBarIcon: ({ focused }) => (
             <NavigationWrapper>
