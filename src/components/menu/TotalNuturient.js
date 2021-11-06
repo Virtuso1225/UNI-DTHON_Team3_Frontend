@@ -119,7 +119,7 @@ const TotalNuturient = ({ navigation }) => {
       {({ purchaseList, totalNum }) => (
         <BackgroundWrapper>
           <HeaderSection>
-            <PageHeader>영양 정보{str}</PageHeader>
+            <PageHeader>영양 정보</PageHeader>
           </HeaderSection>
           <BodySection>
             <ScrollView contentContainerStyle={styles.contentContainer}>
