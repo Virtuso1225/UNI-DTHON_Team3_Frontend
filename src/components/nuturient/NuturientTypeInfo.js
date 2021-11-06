@@ -20,7 +20,7 @@ const NuturientInfo = ({ nulist, type, sum }) => {
               font="Regular"
               color="#000000"
             >
-              {content.subtitle} {content.title} {type}{' '}
+              {content.title} {type}{' '}
             </CustomText>
             <CustomText
               size={responsiveScreenFontSize(1.84)}

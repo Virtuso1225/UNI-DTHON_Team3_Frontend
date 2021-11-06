@@ -19,7 +19,6 @@ import {
 } from './CardStyle';
 
 const Card = ({ props }) => {
-
   const subTitle = props.subname;
   const title = props.name;
   const dataurl = url();
