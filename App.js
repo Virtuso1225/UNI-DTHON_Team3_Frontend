@@ -5,7 +5,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import Mainpage from './src/pages/Mainpage';
 import Spinner from './src/Spinner';
 import { ListProvider, ProgressProvider, ProgressContext } from './src/context';
+import { LogBox } from 'react-native';
+
 const App = () => {
+  LogBox.ignoreAllLogs(true);
   const [fontsLoaded] = useFonts({
     Thin: require('./assets/fonts/SCDream1.otf'),
     ExtraLight: require('./assets/fonts/SCDream2.otf'),
